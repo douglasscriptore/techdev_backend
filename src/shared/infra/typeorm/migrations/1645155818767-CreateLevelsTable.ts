@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateDevelopersTable1645154044448 implements MigrationInterface {
+export class CreateLevelsTable1645155818767 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'developers',
+        name: 'levels',
         columns: [
           {
             name: 'id',
@@ -13,21 +13,8 @@ export class CreateDevelopersTable1645154044448 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
-            name: 'fullname',
+            name: 'levelname',
             type: 'varchar',
-          },
-          {
-            name: 'gender',
-            type: 'enum',
-            enum: ['masculino', 'feminino', 'outro'],
-          },
-          {
-            name: 'dateofborn',
-            type: 'timestamp',
-          },
-          {
-            name: 'age',
-            type: 'integer',
           },
           {
             name: 'created_at',
@@ -45,6 +32,6 @@ export class CreateDevelopersTable1645154044448 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('developers');
+    await queryRunner.dropTable('levels');
   }
 }
