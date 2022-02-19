@@ -1,12 +1,19 @@
 import ICreateLevelDTO from '@modules/levels/dtos/ICreateLevelDTO';
+import IFindLevelDTO from '@modules/levels/dtos/IFindLevelDTO';
 import Level from '@modules/levels/infra/typeorm/entities/Level';
 import ILevelsRepository from '../ILevelsRepository';
 
 class FakeLevelsRepository implements ILevelsRepository {
   private levels: Level[] = [];
 
-  public async findAll(): Promise<Level[]> {
-    return this.levels;
+  public async findAll({
+    filter = '',
+  }: IFindLevelDTO): Promise<{ data: Level[]; count: number }> {
+    const filteredLevels = this.levels.filter(le =>
+      le.levelname.includes(filter.toLocaleLowerCase()),
+    );
+
+    return { data: filteredLevels, count: filteredLevels.length };
   }
 
   public async findById(id: number): Promise<Level | undefined> {
@@ -17,7 +24,11 @@ class FakeLevelsRepository implements ILevelsRepository {
   public async create(levelData: ICreateLevelDTO): Promise<Level> {
     const level = new Level();
 
-    Object.assign(level, { id: new Date().getTime() }, levelData);
+    Object.assign(
+      level,
+      { id: new Date().getTime() },
+      { ...levelData, levelname: levelData.levelname.toLocaleLowerCase() },
+    );
 
     this.levels.push(level);
 
@@ -32,6 +43,10 @@ class FakeLevelsRepository implements ILevelsRepository {
     this.levels[findIndex] = level;
 
     return level;
+  }
+
+  public async delete(id: number): Promise<void> {
+    this.levels.filter(level => level.id !== id);
   }
 }
 

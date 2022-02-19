@@ -29,6 +29,6 @@ export class AddLevelsIdToDevelopersTable1645156737957
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('developers', 'DeveloperLevel_fk');
-    await queryRunner.dropColumn('developers', 'provilevel_idder_id');
+    await queryRunner.dropColumn('developers', 'level_id');
   }
 }

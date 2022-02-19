@@ -1,9 +1,12 @@
+import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import ICreateLevelDTO from '../dtos/ICreateLevelDTO';
 import Level from '../infra/typeorm/entities/Level';
 import ILevelsRepository from '../repositories/ILevelsRepository';
 
-type IRequest = ICreateLevelDTO;
+interface IRequest {
+  id: number;
+}
 @injectable()
 class CreateLevelService {
   constructor(
@@ -11,8 +14,12 @@ class CreateLevelService {
     private levelsRepository: ILevelsRepository,
   ) {}
 
-  public async execute({ levelname }: IRequest): Promise<Level> {
-    const level = await this.levelsRepository.create({ levelname });
+  public async execute({ id }: IRequest): Promise<Level> {
+    const level = await this.levelsRepository.findById(id);
+
+    if (!level) {
+      throw new AppError('Nível nao localizado');
+    }
 
     return level;
   }

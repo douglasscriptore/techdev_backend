@@ -8,8 +8,9 @@ export class CreateDevelopersTable1645154044448 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'integer',
+            type: 'int',
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: 'increment',
           },
           {
@@ -27,7 +28,7 @@ export class CreateDevelopersTable1645154044448 implements MigrationInterface {
           },
           {
             name: 'age',
-            type: 'integer',
+            type: 'int',
           },
           {
             name: 'created_at',

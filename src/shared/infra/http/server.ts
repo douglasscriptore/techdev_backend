@@ -1,9 +1,14 @@
-import express, { Request, Response, NextFunction } from "express";
-import cors from "cors";
-import "express-async-errors";
-import { errors } from "celebrate";
-import routes from "@shared/infra/http/routes";
-import AppError from "@shared/errors/AppError";
+import 'reflect-metadata';
+
+import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import 'express-async-errors';
+import { errors } from 'celebrate';
+import routes from '@shared/infra/http/routes';
+import AppError from '@shared/errors/AppError';
+
+import '../typeorm';
+import '../container';
 
 const app = express();
 
@@ -32,25 +37,25 @@ app.use(errors());
  */
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   // Print errors on console when code start in development mode
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.NODE_ENV !== 'production') {
     console.error(err);
   }
 
   if (err instanceof AppError) {
     return response
       .status(err.statusCode)
-      .json({ status: "error", message: err.message });
+      .json({ status: 'error', message: err.message });
   }
 
   return response
     .status(500)
-    .json({ status: "error", message: "Internal Server Error" });
+    .json({ status: 'error', message: 'Internal Server Error' });
 });
 
 app.listen(process.env.PORT || 3333, () => {
   console.log(
     `🚀 Server running on port ${process.env.PORT || 3333} in ${
       process.env.NODE_ENV
-    } mode`
+    } mode`,
   );
 });
