@@ -10,7 +10,7 @@ interface IRequest {
 @injectable()
 class CreateLevelService {
   constructor(
-    @inject('LevelsRespository')
+    @inject('LevelsRepository')
     private levelsRepository: ILevelsRepository,
   ) {}
 

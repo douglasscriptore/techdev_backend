@@ -11,7 +11,7 @@ developersRouter.get(
   '/',
   celebrate({
     [Segments.QUERY]: {
-      fullname: Joi.string(),
+      name: Joi.string(),
       level_ids: Joi.string(),
       take: Joi.number(),
       skip: Joi.number(),
@@ -53,13 +53,11 @@ developersRouter.put(
       id: Joi.number(),
     },
     [Segments.BODY]: {
-      fullname: Joi.string().required(),
-      gender: Joi.string()
-        .valid(...Object.values(EnumGender))
-        .required(),
-      dateofborn: Joi.date().required(),
-      age: Joi.number().required(),
-      level_id: Joi.number().required(),
+      fullname: Joi.string(),
+      gender: Joi.string().valid(...Object.values(EnumGender)),
+      dateofborn: Joi.date(),
+      age: Joi.number(),
+      level_id: Joi.number(),
     },
   }),
   developersController.update,

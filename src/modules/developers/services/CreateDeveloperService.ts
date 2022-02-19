@@ -12,7 +12,7 @@ class CreateDeveloperService {
   constructor(
     @inject('DevelopersRepository')
     private developersRepository: IDevelopersRepository,
-    @inject('LevelsRespository')
+    @inject('LevelsRepository')
     private levelsRepository: ILevelsRepository,
   ) {}
 

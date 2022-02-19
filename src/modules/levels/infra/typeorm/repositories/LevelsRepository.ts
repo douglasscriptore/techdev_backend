@@ -4,7 +4,7 @@ import ILevelsRepository from '@modules/levels/repositories/ILevelsRepository';
 import { getRepository, Like, Repository } from 'typeorm';
 import Level from '../entities/Level';
 
-class LevelsRespository implements ILevelsRepository {
+class LevelsRepository implements ILevelsRepository {
   private ormRepository: Repository<Level>;
 
   constructor() {
@@ -51,4 +51,4 @@ class LevelsRespository implements ILevelsRepository {
   }
 }
 
-export default LevelsRespository;
+export default LevelsRepository;

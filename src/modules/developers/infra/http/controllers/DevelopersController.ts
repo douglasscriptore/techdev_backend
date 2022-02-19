@@ -1,15 +1,18 @@
 import CreateDeveloperService from '@modules/developers/services/CreateDeveloperService';
+import DeleteDeveloperService from '@modules/developers/services/DeleteDeveloperService';
+import FindDeveloperService from '@modules/developers/services/FindDeveloperService';
 import ListDevelopersService from '@modules/developers/services/ListDevelopersService';
+import UpdateDevelopersService from '@modules/developers/services/UpdateDevelopersService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 class DevelopersController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const { fullname, level_ids, take, skip } = request.query;
+    const { name, level_ids, take, skip } = request.query;
     const listDevelopersService = container.resolve(ListDevelopersService);
 
     const developers = await listDevelopersService.execute({
-      fullname: fullname?.toString(),
+      name: name?.toString(),
       unformated_level_ids: level_ids?.toString(),
       take: Number(take),
       skip: Number(skip),
@@ -21,7 +24,10 @@ class DevelopersController {
   public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    return response.send();
+    const findDeveloperService = container.resolve(FindDeveloperService);
+    const developer = await findDeveloperService.execute({ id: Number(id) });
+
+    return response.json(developer);
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
@@ -43,7 +49,17 @@ class DevelopersController {
     const { id } = request.params;
     const { fullname, gender, dateofborn, age, level_id } = request.body;
 
-    return response.send();
+    const updateDeveloperService = container.resolve(UpdateDevelopersService);
+    const developer = await updateDeveloperService.execute({
+      id: Number(id),
+      fullname,
+      gender,
+      dateofborn,
+      age,
+      level_id,
+    });
+
+    return response.json(developer);
   }
 
   public async destroy(
@@ -51,6 +67,9 @@ class DevelopersController {
     response: Response,
   ): Promise<Response> {
     const { id } = request.params;
+
+    const deleteDeveloperService = container.resolve(DeleteDeveloperService);
+    await deleteDeveloperService.execute({ id: Number(id) });
 
     return response.send();
   }

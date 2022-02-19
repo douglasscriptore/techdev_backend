@@ -11,8 +11,8 @@ import {
 
 export enum EnumGender {
   Male = 'masculino',
-  female = 'feminino',
-  other = 'outro',
+  Female = 'feminino',
+  Other = 'outro',
 }
 
 @Entity('developers')

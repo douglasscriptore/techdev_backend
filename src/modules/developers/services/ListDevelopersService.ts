@@ -15,7 +15,7 @@ class ListDevelopersService {
   ) {}
 
   public async execute({
-    fullname,
+    name,
     unformated_level_ids,
     skip,
     take,
@@ -25,14 +25,14 @@ class ListDevelopersService {
         unformated_level_ids.split(',').map(id => Number(id))) ||
       [];
 
-    const levels = await this.developersRepository.findAll({
-      fullname,
+    const developers = await this.developersRepository.findAll({
+      name,
       level_ids: formatedLevelIds,
       skip,
       take,
     });
 
-    return levels;
+    return developers;
   }
 }
 

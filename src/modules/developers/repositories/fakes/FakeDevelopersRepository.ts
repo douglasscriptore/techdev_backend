@@ -7,13 +7,11 @@ class FakeDevelopersRepository implements IDevelopersRepository {
   private developers: Developer[] = [];
 
   public async findAll({
-    fullname = '',
+    name = '',
     level_ids = [],
   }: IFindDeveloperDTO): Promise<{ data: Developer[]; count: number }> {
-    const filteredDevelopers = this.developers.filter(
-      dev =>
-        dev.fullname.includes(fullname.toLocaleLowerCase()) &&
-        level_ids.includes(dev.level_id),
+    const filteredDevelopers = this.developers.filter(dev =>
+      dev.fullname.includes(name.toLocaleLowerCase()),
     );
 
     return { data: filteredDevelopers, count: filteredDevelopers.length };
@@ -32,7 +30,7 @@ class FakeDevelopersRepository implements IDevelopersRepository {
       { id: new Date().getTime() },
       {
         ...developerData,
-        levelname: developerData.fullname.toLocaleLowerCase(),
+        fullname: developerData.fullname.toLocaleLowerCase(),
       },
     );
 

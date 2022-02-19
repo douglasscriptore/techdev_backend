@@ -1,13 +1,19 @@
+import FakeDevelopersRepository from '@modules/developers/repositories/fakes/FakeDevelopersRepository';
 import AppError from '@shared/errors/AppError';
 import FakeLevelsRepository from '../../repositories/fakes/FakeLevelsRepository';
 import DeleteLevelService from '../DeleteLevelService';
 
 describe('DeleteLeveService', () => {
   let fakeLevelsRepository: FakeLevelsRepository;
+  let fakeDevelopersRepository: FakeDevelopersRepository;
   let deleteLevelService: DeleteLevelService;
   beforeEach(() => {
     fakeLevelsRepository = new FakeLevelsRepository();
-    deleteLevelService = new DeleteLevelService(fakeLevelsRepository);
+    fakeDevelopersRepository = new FakeDevelopersRepository();
+    deleteLevelService = new DeleteLevelService(
+      fakeLevelsRepository,
+      fakeDevelopersRepository,
+    );
   });
 
   it('should be able delete the level', async () => {

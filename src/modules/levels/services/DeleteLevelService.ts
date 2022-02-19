@@ -1,3 +1,4 @@
+import IDevelopersRepository from '@modules/developers/repositories/IDevelopersRepository';
 import AppError from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
 
@@ -10,8 +11,10 @@ interface IRequest {
 @injectable()
 class DeleteLevelService {
   constructor(
-    @inject('LevelsRespository')
+    @inject('LevelsRepository')
     private levelsRepository: ILevelsRepository,
+    @inject('DevelopersRepository')
+    private developersRepository: IDevelopersRepository,
   ) {}
 
   public async execute({ id }: IRequest): Promise<void> {
@@ -19,6 +22,16 @@ class DeleteLevelService {
 
     if (!level) {
       throw new AppError('Nível nao localizado');
+    }
+
+    const developers = await this.developersRepository.findAll({
+      level_ids: [level.id],
+    });
+
+    if (developers.data.length > 0) {
+      throw new AppError(
+        'Não é possível deletar esse nível, pois existem desenvolvedores associados',
+      );
     }
 
     await this.levelsRepository.delete(level.id);

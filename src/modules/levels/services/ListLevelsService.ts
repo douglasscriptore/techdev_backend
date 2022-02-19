@@ -10,7 +10,7 @@ type IRequest = IFindLevelDTO;
 @injectable()
 class ListLevelsService {
   constructor(
-    @inject('LevelsRespository')
+    @inject('LevelsRepository')
     private levelsRepository: ILevelsRepository,
   ) {}
 

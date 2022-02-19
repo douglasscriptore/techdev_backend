@@ -12,7 +12,7 @@ class DevelopersRepository implements IDevelopersRepository {
   }
 
   public async findAll({
-    fullname = '',
+    name = '',
     level_ids = [],
     take = 10,
     skip = 0,
@@ -21,7 +21,7 @@ class DevelopersRepository implements IDevelopersRepository {
 
     const [data, total] = await this.ormRepository.findAndCount({
       where: {
-        fullname: Like(`%${fullname.toLocaleLowerCase()}%`),
+        fullname: Like(`%${name.toLocaleLowerCase()}%`),
         ...filter,
       },
       relations: ['level'],
