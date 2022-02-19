@@ -1,5 +1,5 @@
-const pathDir = process.env.NODE_ENV === 'production' ? './src' : './dist';
-var extension = process.env.NODE_ENV === 'production' ? '.ts' : '.js';
+const pathDir = process.env.NODE_ENV !== 'production' ? './src' : './dist';
+var extension = process.env.NODE_ENV !== 'production' ? '.ts' : '.js';
 
 module.exports = [
   {
