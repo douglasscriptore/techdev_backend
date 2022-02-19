@@ -36,7 +36,7 @@ class Developer {
   age: number;
 
   @Column()
-  level_id: string;
+  level_id: number;
 
   @ManyToOne(() => Level)
   @JoinColumn({ name: 'level_id' })

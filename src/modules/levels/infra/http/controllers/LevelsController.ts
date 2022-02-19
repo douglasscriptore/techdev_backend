@@ -1,10 +1,11 @@
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+
 import CreateLevelService from '@modules/levels/services/CreateLevelService';
 import DeleteLevelService from '@modules/levels/services/DeleteLevelService';
 import FindLevelService from '@modules/levels/services/FindLevelService';
 import ListLevelsService from '@modules/levels/services/ListLevelsService';
 import UpdateLevelService from '@modules/levels/services/UpdateLevelService';
-import { Request, Response } from 'express';
-import { container } from 'tsyringe';
 
 class LevelsController {
   public async index(request: Request, response: Response): Promise<Response> {
