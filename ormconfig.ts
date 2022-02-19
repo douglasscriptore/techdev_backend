@@ -1,7 +1,7 @@
-const pathDir = process.env.NODE_ENV !== 'production' ? './src' : './dist';
-var extension = process.env.NODE_ENV !== 'production' ? '.ts' : '.js';
+const pathDir = process.env.NODE_ENV === 'production' ? './src' : './dist';
+var extension = process.env.NODE_ENV === 'production' ? '.ts' : '.js';
 
-export default [
+module.exports = [
   {
     name: 'default',
     type: 'postgres',
@@ -18,8 +18,8 @@ export default [
     // },
     synchronize: false,
     soft: true,
-    entities: [pathDir + '/modules/**/infra/typeorm/entities/*' + extension],
-    migrations: [pathDir + '/shared/infra/typeorm/migrations/*' + extension],
+    entities: [pathDir + '/modules/**/infra/typeorm/entities/*{.ts,.js}'],
+    migrations: [pathDir + '/shared/infra/typeorm/migrations/*{.ts,.js}'],
     cli: {
       migrationsDir: pathDir + '/shared/infra/typeorm/migrations',
     },
