@@ -10,12 +10,12 @@ module.exports = [
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    // ssl: true,
-    // extra: {
-    //   ssl: {
-    //     rejectUnauthorized: false,
-    //   },
-    // },
+    ssl: true,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
     synchronize: false,
     soft: true,
     entities: [pathDir + '/modules/**/infra/typeorm/entities/*{.ts,.js}'],
