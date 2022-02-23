@@ -31,11 +31,12 @@ class DevelopersController {
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { fullname, gender, dateofborn, age, level_id } = request.body;
+    const { fullname, gender, dateofborn, age, hobby, level_id } = request.body;
 
     const createDeveloperService = container.resolve(CreateDeveloperService);
     const developer = await createDeveloperService.execute({
       fullname,
+      hobby,
       gender,
       dateofborn,
       age,
@@ -47,12 +48,13 @@ class DevelopersController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { fullname, gender, dateofborn, age, level_id } = request.body;
+    const { fullname, gender, dateofborn, age, level_id, hobby } = request.body;
 
     const updateDeveloperService = container.resolve(UpdateDevelopersService);
     const developer = await updateDeveloperService.execute({
       id: Number(id),
       fullname,
+      hobby,
       gender,
       dateofborn,
       age,

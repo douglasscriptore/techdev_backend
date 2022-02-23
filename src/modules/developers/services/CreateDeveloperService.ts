@@ -18,6 +18,7 @@ class CreateDeveloperService {
 
   public async execute({
     fullname,
+    hobby,
     age,
     dateofborn,
     gender,
@@ -34,6 +35,7 @@ class CreateDeveloperService {
 
     const developer = await this.developersRepository.create({
       fullname,
+      hobby,
       age,
       dateofborn,
       gender,

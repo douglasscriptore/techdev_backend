@@ -35,6 +35,7 @@ developersRouter.post(
   celebrate({
     [Segments.BODY]: {
       fullname: Joi.string().required(),
+      hobby: Joi.string().allow(''),
       gender: Joi.string()
         .valid(...Object.values(EnumGender))
         .required(),
@@ -54,6 +55,7 @@ developersRouter.put(
     },
     [Segments.BODY]: {
       fullname: Joi.string(),
+      hobby: Joi.string().allow(''),
       gender: Joi.string().valid(...Object.values(EnumGender)),
       dateofborn: Joi.date(),
       age: Joi.number(),

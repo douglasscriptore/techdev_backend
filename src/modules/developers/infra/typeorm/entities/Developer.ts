@@ -23,6 +23,9 @@ class Developer {
   @Column()
   fullname: string;
 
+  @Column({ nullable: true })
+  hobby: string;
+
   @Column({
     type: 'enum',
     enum: EnumGender,

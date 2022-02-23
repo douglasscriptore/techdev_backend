@@ -5,13 +5,8 @@ import ICreateDeveloperDTO from '../dtos/ICreateDeveloperDTO';
 import ILevelsRepository from '@modules/levels/repositories/ILevelsRepository';
 import AppError from '@shared/errors/AppError';
 
-interface IRequest {
+interface IRequest extends ICreateDeveloperDTO {
   id: number;
-  fullname?: string;
-  gender?: EnumGender;
-  dateofborn?: Date;
-  age?: number;
-  level_id?: number;
 }
 
 @injectable()
@@ -28,6 +23,7 @@ class UpdateDevelopersService {
     age,
     dateofborn,
     fullname,
+    hobby,
     gender,
     level_id,
   }: IRequest): Promise<Developer> {
@@ -50,6 +46,7 @@ class UpdateDevelopersService {
     if (!!dateofborn) developer.dateofborn = dateofborn;
     if (!!fullname) developer.fullname = fullname;
     if (!!gender) developer.gender = gender;
+    if (!!hobby) developer.hobby = hobby;
 
     await this.developersRepository.save(developer);
 
