@@ -13,9 +13,10 @@ class LevelsRepository implements ILevelsRepository {
 
   public async findAll({
     filter = '',
-    take = 10,
     skip = 0,
+    take = 10,
   }: IFindLevelDTO): Promise<{ data: Level[]; count: number }> {
+    console.log(skip, take);
     const [data, total] = await this.ormRepository.findAndCount({
       where: {
         levelname: Like(`%${filter.toLocaleLowerCase()}%`),

@@ -11,7 +11,7 @@ import UpdateLevelService from '@modules/levels/services/UpdateLevelService';
 class LevelsController {
   public async index(request: Request, response: Response): Promise<Response> {
     const { filter, take, skip } = request.query;
-
+    console.log(skip, take);
     const listLevelsService = container.resolve(ListLevelsService);
     const levels = await listLevelsService.execute({
       filter: filter?.toString(),

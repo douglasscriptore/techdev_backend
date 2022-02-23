@@ -39,17 +39,17 @@ class UpdateDevelopersService {
 
     if (level_id) {
       const level = await this.levelsRepository.findById(level_id);
-
       if (!level) {
         throw new AppError('Nível não localizado');
       }
+
+      developer.level = level;
     }
 
     if (!!age) developer.age = age;
     if (!!dateofborn) developer.dateofborn = dateofborn;
     if (!!fullname) developer.fullname = fullname;
     if (!!gender) developer.gender = gender;
-    if (!!level_id) developer.level_id = level_id;
 
     await this.developersRepository.save(developer);
 
