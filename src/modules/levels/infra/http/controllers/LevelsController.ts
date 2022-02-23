@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { instanceToPlain } from 'class-transformer';
 
 import CreateLevelService from '@modules/levels/services/CreateLevelService';
 import DeleteLevelService from '@modules/levels/services/DeleteLevelService';
@@ -18,7 +19,7 @@ class LevelsController {
       take: Number(take),
     });
 
-    return response.json(levels);
+    return response.json(instanceToPlain(levels));
   }
 
   public async show(request: Request, response: Response): Promise<Response> {

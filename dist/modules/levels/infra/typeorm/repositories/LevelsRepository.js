@@ -29,6 +29,7 @@ class LevelsRepository {
       where: {
         levelname: (0, _typeorm.Like)(`%${filter.toLocaleLowerCase()}%`)
       },
+      relations: ['developers'],
       take,
       skip
     });

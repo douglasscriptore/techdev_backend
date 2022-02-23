@@ -19,7 +19,7 @@ const developersController = new _DevelopersController.default();
 const developersRouter = (0, _express.Router)();
 developersRouter.get('/', (0, _celebrate.celebrate)({
   [_celebrate.Segments.QUERY]: {
-    name: _celebrate.Joi.string(),
+    name: _celebrate.Joi.string().allow(''),
     level_ids: _celebrate.Joi.string(),
     take: _celebrate.Joi.number(),
     skip: _celebrate.Joi.number()

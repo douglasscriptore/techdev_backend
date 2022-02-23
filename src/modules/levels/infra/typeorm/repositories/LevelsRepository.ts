@@ -20,8 +20,10 @@ class LevelsRepository implements ILevelsRepository {
       where: {
         levelname: Like(`%${filter.toLocaleLowerCase()}%`),
       },
+      relations: ['developers'],
       take,
       skip,
+      order: { created_at: 'DESC' },
     });
 
     return { data, count: total };

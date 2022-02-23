@@ -27,6 +27,7 @@ class DevelopersRepository implements IDevelopersRepository {
       relations: ['level'],
       take,
       skip,
+      order: { created_at: 'DESC' },
     });
 
     return { data, count: total };
