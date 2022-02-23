@@ -10,7 +10,7 @@ levelsRouter.get(
   '/',
   celebrate({
     [Segments.QUERY]: {
-      filter: Joi.string(),
+      filter: Joi.string().allow(''),
       take: Joi.number(),
       skip: Joi.number(),
     },
