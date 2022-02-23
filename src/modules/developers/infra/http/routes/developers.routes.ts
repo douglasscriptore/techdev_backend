@@ -11,7 +11,7 @@ developersRouter.get(
   '/',
   celebrate({
     [Segments.QUERY]: {
-      name: Joi.string(),
+      name: Joi.string().allow(''),
       level_ids: Joi.string(),
       take: Joi.number(),
       skip: Joi.number(),
