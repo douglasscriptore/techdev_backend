@@ -45,7 +45,10 @@ class LevelsRepository implements ILevelsRepository {
   }
 
   public async save(level: Level): Promise<Level> {
-    return await this.ormRepository.save(level);
+    return await this.ormRepository.save({
+      ...level,
+      levelname: level.levelname.toLowerCase(),
+    });
   }
 
   public async delete(id: number): Promise<void> {

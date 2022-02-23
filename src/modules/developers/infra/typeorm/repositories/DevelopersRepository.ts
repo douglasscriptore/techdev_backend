@@ -49,7 +49,10 @@ class DevelopersRepository implements IDevelopersRepository {
   }
 
   public async save(developer: Developer): Promise<Developer> {
-    return await this.ormRepository.save(developer);
+    return await this.ormRepository.save({
+      ...developer,
+      fullname: developer.fullname.toLocaleLowerCase(),
+    });
   }
 
   public async delete(id: number): Promise<void> {
