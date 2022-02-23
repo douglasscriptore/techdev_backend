@@ -36,7 +36,7 @@ class LevelsRepository implements ILevelsRepository {
   public async create(levelData: ICreateLevelDTO): Promise<Level> {
     const level = this.ormRepository.create({
       ...levelData,
-      levelname: levelData.levelname.toLocaleLowerCase(),
+      levelname: levelData.levelname.toLowerCase(),
     });
 
     await this.ormRepository.save(level);
