@@ -4,6 +4,9 @@
  
  utilize o arquivo de insominia par testar a API, caso demore para a requisição acontecer aguarde uns instantes até que o heroku seje inicializado
  
+## Desenvolvimento
+  O Projeto foi desenvolvido utilizando basenado na metodologia de SOLID e KISS para atender a necessidade de cadastro de desenvolvidores
+
 ## Tech
 
 Devtech usa várias libs de código aberto para funcionar corretamente:
