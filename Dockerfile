@@ -4,7 +4,7 @@ WORKDIR /home/node/backend
 COPY package.json babel.config.json ormconfig.ts yarn.* ./
 USER node
 COPY --chown=node:node . .
-RUN chmod +x /home/node/backend/init.sh
+
 RUN yarn
 EXPOSE 3333
 ENTRYPOINT ["./init.sh"]
